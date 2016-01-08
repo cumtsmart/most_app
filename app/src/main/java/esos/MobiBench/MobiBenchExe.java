@@ -142,6 +142,7 @@ public class MobiBenchExe extends Thread {
         // Start Result Activity
         ResultActivity.mData = mData;
         Intent intent = new Intent(mContext, ResultActivity.class);
+        intent.putExtra("from", "mobiexe");
         mContext.startActivity(intent);
     }
 
@@ -323,16 +324,16 @@ public class MobiBenchExe extends Thread {
         dataItem.exp_id = result_id;
         switch(select_flag){
             case 0:
-                dataItem.result_type = "Test: All";
+                dataItem.result_type = "Test: All         ";
                 break;
             case 1:
-                dataItem.result_type = "Test: File IO";
+                dataItem.result_type = "Test: File IO   ";
                 break;
             case 2:
-                dataItem.result_type = "Test: SQLite";
+                dataItem.result_type = "Test: SQLite   ";
                 break;
             case 3:
-                dataItem.result_type = "Test: My test";
+                dataItem.result_type = "Test: Custom ";
                 break;
         }
 
