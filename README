@@ -1,0 +1,29 @@
+1. Root your device
+   Because this APK need run blktrace & blkparse & most, which need root right. We use SuperSU to achive this.
+   The root process is easy:
+   i.   unzip device_root.zip under mostbin folder.
+   ii.  execute root_script.sh. This script will root the device and push most bin files into /data/ of DUT
+   iii. reboot your DUT. Remember execute "adb shell setenforce 0" cmd after every reboot. Otherwise the DUT
+        can't boot up.
+
+2. Build the APK and install it
+   Use android studio to build the APK from this project and install on the DUT.
+
+3. Launch the APK and do your test
+   There are 4 button named: start & stop & most & filter. 
+   Click start will execute 
+       1) "/data/blktrace  -d  /dev/block/mmcblk0 -o  /sdcard/result &"
+   Click stop will execute:
+       1) "pgrep /data/blktrace  | xargs kill"
+   Click most will execute:
+       1) "/data/blkparse  -q -i  /sdcard/result> /sdcard/result.p"
+       2) "/data/most EXT4 /dev/block/mmcblk0p6 /sdcard/result.p /sdcard/cache_result.txt"
+       3) "/data/most EXT4 /dev/block/mmcblk0p11 /sdcard/result.p /sdcard/data_result.txt"
+       4) "/data/most EXT4 /dev/block/mmcblk0p5 /sdcard/result.p /sdcard/system_result.txt"
+   Click filter will execute:
+       1) "/data/filter.sh  /sdcard/cache_result.txt"
+       2) "/data/filter.sh  /sdcard/data_result.txt"
+       3) "/data/filter.sh  /sdcard/system_result.txt"
+   You need click them in order: start ---> stop ---> most ---> filter.
+
+4. Click "Go To Graph" Button to the Activity which can display the result through Graph.
