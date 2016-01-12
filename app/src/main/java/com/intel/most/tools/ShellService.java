@@ -58,7 +58,12 @@ public class ShellService extends Service {
         }
     }
 
-    public void handleStart() {
+    public boolean handleStart() {
+        File mostBin = new File(Constant.CMD.CMD_TRACE.trim());
+        if (!mostBin.exists()) {
+            Log.e("yangjun", "file not exists");
+            return false;
+        }
         final String traceCmd = Constant.CMD.CMD_TRACE + " -d " + Constant.PARTITION.FLASH +  " -o " + Constant.PATH.BLK_TRACE + " &";
         // Need run in background thread?
         if (mRootSession != null) {
@@ -81,6 +86,7 @@ public class ShellService extends Service {
                         }
                     });
         }
+        return true;
     }
 
     private void sendCommand(String cmd) {

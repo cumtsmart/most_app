@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.intel.most.tools.handler.BaseHandler;
 import com.intel.most.tools.mobibench.MobiActivity;
@@ -191,19 +192,22 @@ public class MainActivity extends Activity implements View.OnClickListener {
     }
 
     private void handleStart(View view) {
-        mStart.setEnabled(false);
-        mStop.setEnabled(true);
-        mMost.setEnabled(false);
-        mFilter.setEnabled(false);
-
         if (!Shell.SU.available()) {
             Snackbar.make(view, "SU not available", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
         }
 
-        mShellService.handleStart();
-        Intent intent = new Intent(this, AppListActivity.class);
-        startActivityForResult(intent, PICKED_ACTIVITY);
+        boolean result = mShellService.handleStart();
+        if (result) {
+            Intent intent = new Intent(this, AppListActivity.class);
+            startActivityForResult(intent, PICKED_ACTIVITY);
+            mStart.setEnabled(false);
+            mStop.setEnabled(true);
+            mMost.setEnabled(false);
+            mFilter.setEnabled(false);
+        } else {
+            Toast.makeText(this, "You need install blktrace first", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void handleStop(View view) {

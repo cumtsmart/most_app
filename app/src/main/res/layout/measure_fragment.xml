@@ -27,17 +27,17 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_all"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="13dp"
             android:textAllCaps="false"
             android:text="All"/>
 
         <Button
             android:id="@+id/btn_sql"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_margin="13dp"
             android:textAllCaps="false"
             android:text="Sqlite"/>
     </LinearLayout>
@@ -49,16 +49,16 @@
         android:orientation="horizontal">
     <Button
         android:id="@+id/btn_fio"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="13dp"
         android:textAllCaps="false"
         android:text="File IO"/>
     <Button
         android:id="@+id/btn_ctm"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="13dp"
         android:textAllCaps="false"
         android:text="Custom"/>
     </LinearLayout>

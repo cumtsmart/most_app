@@ -121,6 +121,8 @@ public class GraphActivity extends Activity implements View.OnClickListener {
         // enable rotation of the chart by touch
         ioPercentChart.setRotationEnabled(true);
         ioPercentChart.setHighlightPerTapEnabled(true);
+        ioPercentChart.setDrawCenterText(false);
+        ioPercentChart.setDrawSliceText(false);
 
         Legend pieL = ioPercentChart.getLegend();
         pieL.setPosition(Legend.LegendPosition.RIGHT_OF_CHART);
@@ -229,10 +231,6 @@ public class GraphActivity extends Activity implements View.OnClickListener {
         } else {
             Log.e("yangjun", "pid data is null");
             pieData = new PieData();
-            pieData.addXValue(mPieParts.get(0));
-            pieData.addXValue(mPieParts.get(1));
-            pieData.addXValue(mPieParts.get(2));
-            pieData.addXValue(mPieParts.get(3));
         }
 
 
@@ -246,7 +244,9 @@ public class GraphActivity extends Activity implements View.OnClickListener {
         ArrayList<Entry> yVals = new ArrayList<Entry>();
         for (int i = 0; i < 4; i++) {
             if (results[i] > 0) {
+                Log.e("yangjun", "graph index i:" + i);
                 yVals.add(new Entry(results[i], i));
+                pieData.addXValue(mPieParts.get(i));
             }
         }
 
