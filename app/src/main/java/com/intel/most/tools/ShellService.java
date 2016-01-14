@@ -106,6 +106,14 @@ public class ShellService extends Service {
         mRootSession.waitForIdle();
     }
 
+    public void genPids(String packName) {
+        String pgrepCmd = "pgrep " + packName + " > " + Constant.PATH.PID_FILE;
+        if (mRootSession.isRunning()) {
+            Log.e("yangjun", "------- get tids -----");
+            sendCommand(pgrepCmd);
+        }
+    }
+
     public void handleStop() {
         if (mRootSession.isRunning()) {
             Log.e("yangjun", "------- kill blktrace-----");
@@ -132,9 +140,9 @@ public class ShellService extends Service {
         File dataFile = new File(getExternalFilesDir(null), Constant.PATH.FILTER_DATA);
         File systemFile = new File(getExternalFilesDir(null), Constant.PATH.FILTER_SYSTEM);
 
-        String filterCacheCmd = Constant.CMD.CMD_FILTER + Constant.PATH.MOST_CACHE + cacheFile.getAbsolutePath() + " " + procKeyword;
-        String filterDataCmd = Constant.CMD.CMD_FILTER + Constant.PATH.MOST_DATA  + dataFile.getAbsolutePath() + " " + procKeyword;
-        String filterSystemCmd = Constant.CMD.CMD_FILTER + Constant.PATH.MOST_SYSTEM + systemFile.getAbsolutePath() + " " + procKeyword;
+        String filterCacheCmd = Constant.CMD.CMD_FILTER + Constant.PATH.MOST_CACHE + cacheFile.getAbsolutePath() + " " + Constant.PATH.PID_FILE;
+        String filterDataCmd = Constant.CMD.CMD_FILTER + Constant.PATH.MOST_DATA  + dataFile.getAbsolutePath() + " " + Constant.PATH.PID_FILE;
+        String filterSystemCmd = Constant.CMD.CMD_FILTER + Constant.PATH.MOST_SYSTEM + systemFile.getAbsolutePath() + " " + Constant.PATH.PID_FILE;
 
         new MostTask(FILTER).execute(filterCacheCmd, filterDataCmd, filterSystemCmd);
     }

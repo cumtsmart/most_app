@@ -243,6 +243,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         if (requestCode == PICKED_ACTIVITY && resultCode == Activity.RESULT_OK) {
             launchedProcess = data.getStringExtra("processName");
             Log.e("yangjun", launchedProcess);
+            mShellService.genPids(launchedProcess);
         }
     }
 }

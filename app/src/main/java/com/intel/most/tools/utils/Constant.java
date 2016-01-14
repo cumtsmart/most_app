@@ -21,6 +21,8 @@ public class Constant {
         public static final String BLK_TRACE = " /sdcard/result";
         public static final String BLK_PARSE = " /sdcard/result.p";
 
+        public static final String PID_FILE = " /sdcard/pids.txt";
+
         public static final String MOST_DATA = " /sdcard/data_result.txt ";
         public static final String MOST_CACHE = " /sdcard/cache_result.txt ";
         public static final String MOST_SYSTEM = " /sdcard/system_result.txt ";
